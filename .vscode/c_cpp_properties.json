@@ -1,0 +1,11 @@
+{
+  "configurations": [
+      {
+          "name": "LinuxStm32",
+          "includePath": [ "${workspaceFolder}/**"],
+          "defines": [ "USE_HAL_DRIVER", "STM32F072xB" ],
+          "compilerPath": "/usr/bin/arm-none-eabi-gcc"
+      }
+  ],
+  "version": 4
+}
