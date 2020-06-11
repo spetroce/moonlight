@@ -273,9 +273,22 @@ int main(void)
        puzzle_solved = false;
   const uint8_t PUZZLE_LEN = 14; // 10 digit number + 4 digit extension
   char puzzle_keys[PUZZLE_LEN];
+  bool tile_puzzle_win = false;
   while (1)
   {
     if (g_tim_check_keypad) {
+      // Check Tile Puzzle input
+      if (HAL_GPIO_ReadPin(PUZZLE_IN_GPIO_Port, PUZZLE_IN_Pin) == GPIO_PIN_RESET) {
+        if (!tile_puzzle_win) {
+          tile_puzzle_win = true;
+          HAL_GPIO_WritePin(RELAY_0_OUT_GPIO_Port, RELAY_0_OUT_Pin, GPIO_PIN_SET);
+          HAL_Delay(5000);
+          HAL_GPIO_WritePin(RELAY_0_OUT_GPIO_Port, RELAY_0_OUT_Pin, GPIO_PIN_RESET);
+        }
+      } else {
+        tile_puzzle_win = false;
+      }
+
       g_tim_check_keypad = false;
       GetKeypadPress();
       const uint8_t key_idx = GetFilteredKeypadPress();
@@ -338,6 +351,11 @@ int main(void)
                 SetDimmerDutyCycle(i);
                 HAL_Delay(50);
               }
+              // Open Box
+              HAL_Delay(3000);
+              HAL_GPIO_WritePin(RELAY_1_OUT_GPIO_Port, RELAY_1_OUT_Pin, GPIO_PIN_SET);
+              HAL_Delay(250);
+              HAL_GPIO_WritePin(RELAY_1_OUT_GPIO_Port, RELAY_1_OUT_Pin, GPIO_PIN_RESET);
             }
             // User must apply headset to hanger to restart puzzle
             run_puzzle = false;

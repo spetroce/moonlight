@@ -92,6 +92,12 @@ void Error_Handler(void);
 #define TCK_GPIO_Port GPIOA
 #define HANGER_IN_Pin GPIO_PIN_10
 #define HANGER_IN_GPIO_Port GPIOC
+#define RELAY_0_OUT_Pin GPIO_PIN_11
+#define RELAY_0_OUT_GPIO_Port GPIOC
+#define RELAY_1_OUT_Pin GPIO_PIN_12
+#define RELAY_1_OUT_GPIO_Port GPIOC
+#define PUZZLE_IN_Pin GPIO_PIN_2
+#define PUZZLE_IN_GPIO_Port GPIOD
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
