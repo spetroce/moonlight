@@ -314,6 +314,8 @@ int main(void)
           // Stop MP3
           uint8_t start = 'O';
           HAL_UART_Transmit(&huart3, &start, 1, 1000);
+          // Turn light back on all the way
+          SetDimmerDutyCycle(100);
         } else if (run_puzzle && key_char != 'N') {
           puzzle_keys[puzzle_keys_idx] = key_char;
           ++puzzle_keys_idx;
@@ -321,7 +323,7 @@ int main(void)
                         // b    r    i    d    g    e    t
             char ans[] = {'2', '7', '4', '3', '4', '3', '8',
                         // s    a    m
-                          '7', '2', '6', '1', '2', '3', '4'};
+                          '7', '2', '6', '3', '3', '7', '1'};
             SIZE_OF_CHECK(ans, PUZZLE_LEN)
             int i;
             for (i = 0; i < PUZZLE_LEN; ++i) {
